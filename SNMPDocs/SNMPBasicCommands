@@ -121,3 +121,28 @@ sysObjectID - The vendor’s authoritative identification of the network managem
 contained in the entity. This value is allocated within the SMI enterprises sub-tree (1.3.6.1.4.1) 
 and provides an easy and unambiguous means for determining ‘what kind of box’ is being managed.
 ilomCtrlDataAndTime - The date and time of the device.
+
+
+2. SNMPGetNext:This operation is similar to the GET. The significant difference is that the 
+GET NEXT operation retrieves the value of the next OID in the MIB tree. Instead of returing the data you 
+requested, it returns the next OID in the tree and its value:
+
+Example:
+
+% snmpgetnext -v 2c -c demopublic test.net-snmp.org system.sysUpTime.0
+system.sysContact.0 = Wes Hardaker wjhardaker@ucdavis.edu
+
+You could use the snmpgetnext command to manually walk down the mib tree in the remote host, 
+by always specifying the last OID that you saw on the command line for the next command:
+
+% snmpgetnext -v 2c -c demopublic test.net-snmp.org system.sysUpTime.0
+system.sysContact.0 = Wes Hardaker wjhardaker@ucdavis.edu
+% snmpgetnext -v 2c -c demopublic test.net-snmp.org system.sysContact.0
+system.sysName.0 = net-snmp
+% snmpgetnext -v 2c -c demopublic test.net-snmp.org system.sysName.0
+system.sysLocation.0 = UCDavis
+
+
+3. GetBulk:  The GETBULK operation is used to retrieve voluminous data from large MIB table.
+
+Example: 
