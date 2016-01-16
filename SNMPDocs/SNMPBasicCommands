@@ -1,0 +1,40 @@
+
+Q. What is SNMP?
+Ans: Simple Network Management Protocol (SNMP) is an application–layer protocol.
+It is a part of Transmission Control Protocol⁄Internet Protocol (TCP⁄IP) protocol suite.
+SNMP is one of the widely accepted protocols to manage and monitor network elements. 
+
+Simple Network Management Protocol (SNMP) is a popular protocol for network management. 
+It is used for collecting information from, and configuring, network devices, such as 
+servers, printers, hubs, switches, and routers on an Internet Protocol (IP) network.
+
+Developed in 1988 to provide network-device-monitoring capability for TCP/IP-based networks, 
+SNMP was approved as an Internet standard in 1990 by the Internet Architecture Board (IAB) 
+and has been in wide use since that time
+
+SNMP related RFC: 1157, 1420
+
+===============================================================================================
+
+Q. What is MIB?
+Ans: A management information base (MIB) is a database used for managing the entities in 
+a communication network. Most often associated with the Simple Network Management Protocol (SNMP), 
+the term is also used more generically in contexts such as in OSI/ISO Network management model.
+A management information base (MIB) is a formal description of a set of network objects that can 
+be managed using the Simple Network Management Protocol (SNMP). The format of the MIB is 
+defined as part of the SNMP. (All other MIBs are extensions of this basic management information base.) 
+MIB-I refers to the initial MIB definition; MIB-II refers to the current definition. SNMPv2 includes 
+MIB-II and adds some new objects.
+There are MIBs (or more accurately, MIB extensions) for each set of related network entities that 
+can be managed. 
+
+===============================================================================================
+Q. What is SMI?
+Ans:RFC 2578, “Structure of Management Information Version 2 (SMIv2).” A standard that describes the 
+object syntax for specifying how MIB data is referenced and stored
+
+===============================================================================================
+
+
+
+
