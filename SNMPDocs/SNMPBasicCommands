@@ -36,5 +36,88 @@ object syntax for specifying how MIB data is referenced and stored
 ===============================================================================================
 
 
+Q. What is SNMP basic components and their functionalities?
+https://www.manageengine.com/network-monitoring/what-is-snmp.html
+Ans: SNMP consists of
+1. SNMP Manager
+2. Managed devices
+3. SNMP agent
+4. Management Information Database Otherwise called as Management Information Base (MIB)
 
+1. SNMP Manager: A manager or management system is a separate entity that is responsible to 
+communicate with the SNMP agent implemented network devices. This is typically a computer 
+that is used to run one or more network management systems.
+    1. SNMP Manager’s key functions
+    2. Queries agents
+    3. Gets responses from agents
+    4. Sets variables in agents
+    5. Acknowledges asynchronous events from agents
 
+2. Managed Devices: A managed device or the network element is a part of the network that 
+requires some form of monitoring and management e.g. routers, switches, servers, workstations, 
+printers, UPSs, etc...
+
+3. SNMP Agent: The agent is a program that is packaged within the network element. Enabling 
+the agent allows it to collect the management information database from the device locally 
+and makes it available to the SNMP manager, when it is queried for. These agents could be 
+standard (e.g. Net-SNMP) or specific to a vendor (e.g. HP insight agent)
+
+SNMP agent’s key functions
+    1. Collects management information about its local environment
+    2. Stores and retrieves management information as defined in the MIB.
+    3. Signals an event to the manager.
+    4. Acts as a proxy for some non–SNMP manageable network node.
+
+4. Management Information Database Otherwise called as Management Information Base (MIB):
+Management Information Base (MIB) is a collection of Information for managing network element. 
+The MIBs comprises of managed objects identified by the name Object Identifier (Object ID or OID).
+Each Identifier is unique and denotes specific characteristics of a managed device. When queried for, 
+the return value of each identifier could be different e.g. Text, Number, Counter, etc...
+
+There are two types of Managed Object or Object ID: Scalar and Tabular. 
+They could be better understandable with an example
+    Scalar: Device’s vendor name, the result can be only one. (As definition says: "Scalar Object 
+    define a single object instance")
+
+    Tabular: CPU utilization of a Quad Processor, this would give me a result for each CPU 
+    separately, means there will be 4 results for that particular Object ID. (As definition says: 
+    "Tabular object defines multiple related object instance that are grouped together in MIB tables")
+
+Every Object ID is organized hierarchically in MIB. The MIB hierarchy can be represented in a tree 
+structure with individual variable identifier.
+A typical object ID will be a dotted list of integers. For example, the OID in RFC1213 for 
+"sysDescr" is .1.3.6.1.2.1.1.1
+
+===============================================================================================
+Q. What are SNMP basic commands?
+Ans: 
+1. snmpget Command: 
+===================
+The GET operation is a request sent by the manager to the managed device. It is performed to 
+retrieve one or more values from the managed device.
+
+Example:
+=========
+snmpget -mALL -v1 -cpublic snmp_agent_Ip_address sysName.0
+As stated in the description of the sysName.0 MIB object in the SNMPv2-MIB, this command returns an 
+administratively assigned name for this managed node. By convention, this is the node’s 
+fully-qualified domain name. If the name is unknown, the value returned is the zero-length string.
+
+For example:
+
+% snmpget -v2c -cprivate -mALL snmp_agent_Ip_address sysName.0 sysObjectID.0 ilomCtrlDateAndTime.0
+SNMPv2-MIB::sysName.0 = STRING: SUNSPHOSTNAME
+SNMPv2-MIB::sysObjectID.0 = OID: SUN-ILOM-SMI-MIB::sunILOMSystems
+SUN-ILOM-CONTROL-MIB::ilomCtrlDateAndTime.0 = STRING: 2007-12-10,20:33:32.0
+
+In addition to the sysName.0 object, this command displays the content of the sysObjectID.0 and the 
+ilomCtrlDateAndTime.0 MIB objects. Notice that the MIB file name is given for each MIB object as part 
+of the reply.
+
+The following descriptions of the MIB objects are taken from the MIB files.
+sysName - An administratively assigned name for this managed node. By convention, this is the node’s 
+fully-qualified domain name. If the name is unknown, the value is the zero-length string.
+sysObjectID - The vendor’s authoritative identification of the network management subsystem 
+contained in the entity. This value is allocated within the SMI enterprises sub-tree (1.3.6.1.4.1) 
+and provides an easy and unambiguous means for determining ‘what kind of box’ is being managed.
+ilomCtrlDataAndTime - The date and time of the device.
