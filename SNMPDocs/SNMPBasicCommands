@@ -95,6 +95,8 @@ Ans:
 ===================
 The GET operation is a request sent by the manager to the managed device. It is performed to 
 retrieve one or more values from the managed device.
+The GET command requests a list of exact instances from a remote entity. If a requested object 
+does not exist, an error condition is returned explaining why it may not exist
 
 Example:
 =========
@@ -126,6 +128,11 @@ ilomCtrlDataAndTime - The date and time of the device.
 2. SNMPGetNext:This operation is similar to the GET. The significant difference is that the 
 GET NEXT operation retrieves the value of the next OID in the MIB tree. Instead of returing the data you 
 requested, it returns the next OID in the tree and its value:
+The GETNEXT command (GetnextRequest) requests a list of instances from a remote entity, but expects 
+the next variable in the tree back. If a GETNEXT is issued on an object that does not exist, the 
+agent MUST return the next instance in the MIB tree that does exist. If a GETNEXT is issued for an 
+object that does exist, the agent must skip this entry and find the next instance in the MIB tree 
+to return. If no more MIB objects exist in the MIB tree then an End of MIB exception is returned.
 
 Example:
 
@@ -144,5 +151,28 @@ system.sysLocation.0 = UCDavis
 
 
 3. GetBulk:  The GETBULK operation is used to retrieve voluminous data from large MIB table.
+The GETBULK operation merely requests a number of GETNEXT responses to be returned in a single 
+packet rather than having to issue multiple GETNEXTs to retrieve all the data that is needed. 
+This is generally more efficient with network bandwidth and also allows an agent to optimize how 
+it retrieves the data from the MIB instrumentation. However, there is also the possibility of an 
+overrun, which means to get back more data than was needed because parts of the MIB tree that 
+wasn't required were returned as well.
 
 Example: 
+
+
+4: SNMPSet:
+The SET command is used to send configuration or commands to an SNMP agent. The contents will 
+include a list of OIDs and values to be assigned to those OIDs.
+
+
+What is TRAP?
+Ans: A TRAP is a one-way communication, and is one of two types of notifications that can be 
+delivered over SNMP. An entity that receives a TRAP does not acknowledge that it has received 
+it (like snmptrapd, and thus it is not possible for the sender to be assured that the TRAP 
+successfully made it to the destination. Because of this, the usage of INFORMs are recommended instead.
+
+TRAP Versions:
+SNMPv1 actually had a more complex TRAP definition that included a number of parameters.
+In SNMPv2c, the TRAPv2 PDU was defined which is significantly simpler and matches the on-the-wire 
+format of the other protocol operations.
