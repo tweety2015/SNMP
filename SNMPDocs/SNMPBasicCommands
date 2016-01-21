@@ -17,16 +17,13 @@ SNMP related RFC: 1157, 1420
 ===============================================================================================
 
 Q. What is MIB?
-Ans: A management information base (MIB) is a database used for managing the entities in 
-a communication network. Most often associated with the Simple Network Management Protocol (SNMP), 
-the term is also used more generically in contexts such as in OSI/ISO Network management model.
-A management information base (MIB) is a formal description of a set of network objects that can 
-be managed using the Simple Network Management Protocol (SNMP). The format of the MIB is 
-defined as part of the SNMP. (All other MIBs are extensions of this basic management information base.) 
-MIB-I refers to the initial MIB definition; MIB-II refers to the current definition. SNMPv2 includes 
-MIB-II and adds some new objects.
-There are MIBs (or more accurately, MIB extensions) for each set of related network entities that 
-can be managed. 
+Ans: 
+1.A management information base (MIB) is a database used for managing the entities in a communication network. 
+2.The format of the MIB is defined as part of the SNMP. (All other MIBs are extensions of this basic management information base.) 
+3.MIB-I refers to the initial MIB definition; MIB-II refers to the current definition. SNMPv2 includes 
+  MIB-II and adds some new objects.
+4.There are MIBs (or more accurately, MIB extensions) for each set of related network entities that 
+ can be managed. 
 
 ===============================================================================================
 Q. What is SMI?
