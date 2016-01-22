@@ -1,0 +1,25 @@
+Q: What is SNMPv1?
+Ans: SNMPv1 is the initial implementation of the SNMP protocol.
+The operations supported in SNMPv1 are as follows,
+1. GET
+2. GET NEXT
+3. SET
+4. TRAP
+The SNMPv1 message format is defined as,
+--------------------------------------------------------------
+|  SNMP Version	  |  Community	 |   PDU(Protocol Data Unit) |
+--------------------------------------------------------------
+SNMPv1 uses Community String based authentication.
+
+-------------------------------------------------------------------------------
+
+Q: What is SNMPv2?
+Ans: SNMPv2 is the evolution of SNMPv1 protocol.
+SNMPv2 support GET-BULK and INFORM operation in addition to the operations supported by SNMPv1.
+The message format of SNMPv2 GET, GETNEXT, SET are same as SNMPv1 but the message format of 
+SNMPv2 TRAP is different from the SNMPv1 messag format.
+SNMPv2 also uses the Community based authentication which is same as SNMPv1.
+
+-------------------------------------------------------------------------------
+
+Structure of SNMP V1 Message Format - Trap PDU
